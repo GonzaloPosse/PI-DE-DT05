@@ -26,7 +26,7 @@ def validar_capicua(numero:str):
         'numero':numero,
         'validacion':respuesta
     }
-
+"""
 @app.get('/info-by-id/{show_id}')
 def buscar_id(show_id:str):
     df_git = pd.read_json('https://raw.githubusercontent.com/GonzaloPosse/netflix_test/main/netflix_titles.json')
@@ -37,3 +37,4 @@ def buscar_id(show_id:str):
         'Index':show_id, 
         'data': data[show_id]
     }
+"""
