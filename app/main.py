@@ -1,5 +1,6 @@
 from typing import Optional
-
+import pandas as pd
+import json
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -24,4 +25,15 @@ def validar_capicua(numero:str):
     return {
         'numero':numero,
         'validacion':respuesta
+    }
+
+@app.get('/info-by-id/{show_id}')
+def buscar_id(show_id:str):
+    df_git = pd.read_json('https://raw.githubusercontent.com/GonzaloPosse/netflix_test/main/netflix_titles.json')
+    df_git.set_index('show_id', drop=True, inplace=True)
+    data = df_git.to_dict('index')
+    # data = json.dumps(data, indent=4, separators=(',',':'))
+    return {
+        'Index':show_id, 
+        'data': data[show_id]
     }
